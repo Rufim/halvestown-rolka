@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://yandex.st/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/resources.js"></script>
+    <style type="text/css">
+        .CodeMirror {
+            border-top: 1px solid #888;
+            border-bottom: 1px solid #888;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="code"></div>
+<script type="text/javascript">
+
+    var codemirror = "https://cdn.rawgit.com/codemirror/CodeMirror/master/";
+
+    var css = [codemirror + "lib/codemirror.css", codemirror + "addon/hint/show-hint.css", codemirror + "theme/ambiance.css"];
+
+    var javascript = [codemirror + "lib/codemirror.js",
+        codemirror + "mode/htmlmixed/htmlmixed.js",
+        codemirror + "mode/xml/xml.js",
+        codemirror + "mode/javascript/javascript.js",
+        codemirror + "mode/css/css.js",
+        codemirror + "addon/hint/show-hint.js",
+        codemirror + "addon/hint/xml-hint.js",
+        codemirror + "addon/hint/html-hint.js"];
+
+
+    var config;
+    config = {
+        lineNumbers: true,
+        mode: "text/html",
+        extraKeys: {"Ctrl-Space": "autocomplete"},
+        theme: "ambiance",
+        indentWithTabs: false,
+        readOnly: false,
+        value: document.documentElement.innerHTML
+    };
+    var cb = new Callback("CodeMirror", [document.getElementById("code"), config]);
+    loadResourcesWithCallback(css, new Callback(loadResourcesWithCallback, [javascript, cb]));
+
+</script>
+</body>
+</html>

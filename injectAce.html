@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Внешние Библеотеки-->
+
+    <script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ext-language_tools.js"></script>
+</head>
+<body>
+
+<style type="text/css">
+    #editor {
+        position: relative;
+        width: 100%;
+        height: 300px;
+    }
+    #preview {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border: 0px;
+    }
+</style>
+<div id="editor"></div>
+<br/>
+<input type="button" value="Показать результат" onClick="javascript:showPreview();">
+<br/><br/>
+<div id="preview" />
+
+<script>
+    // trigger extension
+    ace.require("ace/ext/language_tools");
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/monokai");
+    // enable autocompletion and snippets
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+
+    function showPreview() {
+        var view=$('#preview');
+        var editor = ace.edit("editor");
+        view.html(editor.getSession().getValue());
+    }
+</script>
+
+
+<script>
+    // Hook up ACE editor to all textareas with data-editor attribute
+    if(document.URL.indexOf("admin_options.php")!=-1){
+        $('.processed').each(function () {
+            var textarea = $(this);
+            var mode = "html";
+            var editDiv = $('<div>', {
+                position: 'absolute',
+                width: textarea.width(),
+                height: textarea.height(),
+                'class': textarea.attr('class')
+            }).insertBefore(textarea);
+            textarea.css('visibility', 'hidden');
+            var editor = ace.edit(editDiv[0]);
+            editor.renderer.setShowGutter(false);
+            editor.getSession().setValue(textarea.val());
+            editor.getSession().setMode("ace/mode/" + mode);
+            editor.setTheme("ace/theme/idle_fingers");
+            // copy back to textarea on form submit...
+            textarea.closest('form').submit(function () {
+                textarea.val(editor.getSession().getValue());
+            })
+        });
+    }
+</script>
+</body>
+</html>

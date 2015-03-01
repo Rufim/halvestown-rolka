@@ -1,0 +1,11 @@
+{
+  "name": "selfCSS",
+  "icons": [{
+    "src": "//selfcss.org/apple-touch-icon-precomposed.png",
+    "sizes": "144x144",
+    "density": "2"
+  }],
+  "start_url": "/index.html",
+  "display": "fullscreen",
+  "orientation": "landscape"
+}

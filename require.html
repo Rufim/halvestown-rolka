@@ -1,0 +1,25 @@
+<html>
+<head>
+    <script src="js/test.js"></script>
+    <script data-main="js/test" type="text/javascript" src="http://yandex.st/jquery/1.4.4/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.js"></script>
+    <style type="text/css">
+        .CodeMirror {border-top: 1px solid #888; border-bottom: 1px solid #888;}
+    </style>
+</head>
+<body>
+
+<div id="code"></div>
+
+
+<script type="text/javascript">
+    require('code-mirror!htmlmixed|php:ambiance|eclipse|monokai', function(CodeMirror) {
+        editor = CodeMirror(document.getElementById("code"), {
+            mode: "text/html",
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+            value: document.documentElement.innerHTML
+        });
+    });
+</script>
+</body>
+</html>

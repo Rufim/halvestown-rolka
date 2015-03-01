@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="http://yandex.st/jquery/1.4.4/jquery.min.js"></script>
+</head>
+<body>
+
+<textarea class="processed" name="form[html_header]" rows="10" cols="55">&lt;!-- Внешние Библеотеки--&gt;
+    &lt;script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript"
+    charset="utf-8"&gt;&lt;/script&gt;
+    &lt;script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ext-language_tools.js"&gt;&lt;/script&gt;
+
+    &lt;!-- Полупрозрачные баннеры--&gt;
+    &lt;style type="text/css"&gt;
+    a img {
+    filter: progid: DXImageTransform.Microsoft.Alpha(opacity=50);
+    -moz-opacity: 0.5; /* Mozilla 1.6 */
+    -khtml-opacity: 0.5; /* Konqueror 3.1, Safari 1.1 */
+    opacity: 0.5; /* CSS3 - Mozilla 1.7b +, Firefox 0.9 +, Safari 1.2+, Opera 9 */
+    filter: alpha(opacity=50); /* IE 5.5+*/
+    }
+    a:hover img {
+    filter: progid: DXImageTransform.Microsoft.Alpha(opacity=50);
+    -moz-opacity: 0.5; /* Mozilla 1.6 */
+    -khtml-opacity: 0.5; /* Konqueror 3.1, Safari 1.1 */
+    opacity: 1.0; /* CSS3 - Mozilla 1.7b +, Firefox 0.9 +, Safari 1.2+, Opera 9 */
+    filter: alpha(opacity=50); /* IE 5.5+*/
+    }
+    &lt;/style&gt;
+
+    &lt;!-- Стрелочки--&gt;
+    &lt;div style="position:fixed;z-index:1003; right :0.5%; bottom: 45%;"&gt;
+    &lt;a href="#top" onclick="scrollTo(0,0); return false;" title="Вверх страницы"&gt;
+    &lt;img src="http://i.imgur.com/SIo96ZC.png" alt="Вверх страницы"&gt;
+    &lt;/a&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;a href="#top" onclick="scrollTo(0, document.body.scrollHeight); return false;" title="Вниз страницы"&gt;
+    &lt;img src="http://i.imgur.com/h1T23ld.png" alt="Вниз страницы"&gt;
+    &lt;/a&gt;
+    &lt;/div&gt;
+
+
+    &lt;!--Запрет перехода на первую страницу при удалении тем и сообщений --&gt;
+    &lt;script type="text/javascript" src="http://premod.mybb.ru/files/0010/b4/f8/33839.js"&gt;&lt;/script&gt;
+
+    &lt;!-- Отключение репутации--&gt;
+    &lt;script type="text/javascript"&gt;
+    RusffCore.sets.reputation = 0;
+    &lt;/script&gt;
+
+    &lt;!-- Отключить функцию "Граффити"--&gt;
+    &lt;script type="text/javascript"&gt;
+    RusffCore.sets.graffiti = false;
+    &lt;/script&gt;
+
+    &lt;!-- Отключение "Поделиться"--&gt;
+    &lt;script type="text/javascript"&gt;
+    RusffCore.sets.share = false;
+    &lt;/script&gt;
+
+    &lt;!-- сервисных смайлов--&gt;
+    &lt;script type="text/javascript"&gt;
+    RusffCore.sets.rusff_smilepack = 0;
+    &lt;/script&gt;
+
+    &lt;!-- Отключение жалоб--&gt;
+    &lt;script type="text/javascript"&gt;
+    RusffCore.sets.show_reportBtn = 0;
+    &lt;/script&gt;
+
+    &lt;!-- Отключить функцию "Теги"--&gt;
+    &lt;script type="text/javascript"&gt;
+    RusffCore.sets.tags = false;
+    &lt;/script&gt;
+</textarea>
+<script type="text/javascript">
+
+    function ValidURL(str) {
+        var pattern = new RegExp('^(https?:\/\/)?' + // protocol
+        '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|' + // domain name
+        '((\d{1,3}\.){3}\d{1,3}))' + // OR ip (v4) address
+        '(\:\d+)?(\/[-a-z\d%_.~+]*)*' + // port and path
+        '(\?[;&a-z\d%_.~+=-]*)?' + // query string
+        '(\#[-a-z\d_]*)?$', 'i'); // fragment locater
+        if (!pattern.test(str)) {
+            alert("Please enter a valid URL.");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    var urls = [
+        "https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js",
+        "https://ajaxorg.github.io/ace-builds/src-min-noconflict/ext-language_tools.js"];
+
+    String.prototype.endsWith = function (suffix) {
+        return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
+
+    function createResource(url) {
+        var script;
+        if (url.endsWith(".js")) {
+            script = document.createElement('script');
+            script.sType = 'text/javascript';
+            script.src = url;
+        }
+        if (url.endsWith(".css")) {
+            script = document.createElement('style');
+            script.sType = 'text/css';
+            script.src = url;
+        }
+        return script;
+    }
+
+    function loadResource(url) {
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(createResource(url));
+
+    }
+
+    function loadResourceWithCallback(url, callback) {
+        var head = document.getElementsByTagName('head')[0];
+        var script = createResource(url);
+        // Fire the loading
+        head.appendChild(script);
+        // Then bind the event to the callback function.
+        // There are several events for cross browser compatibility.
+        script.onload = script.onerror = function() {
+            if (!this.executed) { // выполнится только один раз
+                this.executed = true;
+                callback();
+            }
+        };
+
+        script.onreadystatechange = function() {
+            var self = this;
+            if (this.readyState == "complete" || this.readyState == "loaded") {
+                setTimeout(function() { self.onload() }, 0);// сохранить "this" для onload
+            }
+        };
+
+    }
+
+    function loadResourcesWithCallback(urls, callback, index) {
+        if(index == urls.length - 1) {
+            loadResourceWithCallback(urls[index], callback);
+            return;
+        }
+        // Adding the script tag to the head as suggested before
+        var head = document.getElementsByTagName('head')[0];
+        var script = createResource(urls[index]);
+        // Fire the loading
+        head.appendChild(script);
+
+        // Then bind the event to the callback function.
+        // There are several events for cross browser compatibility.
+        script.onload = script.onerror = function() {
+            if (!this.executed) { // выполнится только один раз
+                this.executed = true;
+                loadResourcesWithCallback(urls, callback, index + 1);
+            }
+        };
+
+        script.onreadystatechange = function() {
+            var self = this;
+            if (this.readyState == "complete" || this.readyState == "loaded") {
+                setTimeout(function() { self.onload() }, 0);// сохранить "this" для onload
+            }
+        };
+    }
+
+    var replaceProcessed = function () {
+        $('.processed').each(function () {
+            var textarea = $(this);
+            var mode = "html";
+            var editDiv = $('<div>', {
+                position: 'absolute',
+                width: textarea.width(),
+                height: textarea.height(),
+                'class': textarea.attr('class')
+            }).insertBefore(textarea);
+            textarea.hide();
+            // trigger extension
+            ace.require("ace/ext/language_tools");
+            var editor = ace.edit(editDiv[0]);
+            editor.$blockScrolling = Infinity;
+            editor.setTheme("ace/theme/cobalt");
+            editor.getSession().setMode("ace/mode/" + mode);
+            editor.getSession().setValue(textarea.val());
+            // enable autocompletion and snippets
+            editor.setOptions({
+                enableBasicAutocompletion: true,
+                enableSnippets: true,
+                enableLiveAutocompletion: true
+            });
+
+            // copy back to textarea on form submit...
+            textarea.closest('form').submit(function () {
+                textarea.val(editor.getSession().getValue());
+            });
+        });
+
+    };
+
+    $(document).ready(loadResourcesWithCallback(urls, replaceProcessed, 0));
+</script>
+</body>
+</html>
