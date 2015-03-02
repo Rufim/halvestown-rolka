@@ -506,10 +506,10 @@ generate_css = function () {
     //image
     if (cssobjects.background.img !== 'none') {
         if (cssobjects.background.img === 'summer') {
-            css += '  background-image: url(\'https://cdn.rawgit.com/Rufim/halvestown-rolka/tree/csseditor-v1/csseditor/img/summer.jpg\'); \n';
+            css += '  background-image: url(\'https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/img/summer.jpg\'); \n';
         }
         if (cssobjects.background.img === 'winter') {
-            css += '  background-image: url(\'https://cdn.rawgit.com/Rufim/halvestown-rolka/tree/csseditor-v1/csseditor/img/winter.jpg\'); \n';
+            css += '  background-image: url(\'https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/img/winter.jpg\'); \n';
         }
         if (($id('bgtop').value !== '0') || ($id('bgleft').value !== '0')) {
             css += '  background-position: ' + $id('bgtop').value + $id('wpt_sbgptype').value + ' ' + $id('bgleft').value + $id('wpt_sbgptype').value + '; \n';
