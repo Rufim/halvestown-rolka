@@ -8,13 +8,13 @@
     <meta name="description" content="selfCSS is a WYSIWYG CSS3 Editor">
     <meta name="translation" content="Dmitry Kazantsev">
     <meta name="keywords" content="CSS, WYSIWYG, HTML, JS, Editor, Generator, Position, Style, Background, Border, Margin, Padding, Shadow, Filter">
-    <script src="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/js/script.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
     <script src="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/js/fd-slider.js" type="text/javascript"></script>
     <script src="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/js/prettify.js" type="text/javascript"></script>
     <script src="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/js/online.js" type="text/javascript"></script>
     <link href="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/css/fd-slider.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/css/add2home.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <link href="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/css/dark.css" rel="stylesheet" type="text/css"/>
     <link href="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/css/prettify.css" type="text/css" rel="stylesheet" />
     <link rel="apple-touch-icon" href="https://cdn.rawgit.com/Rufim/halvestown-rolka/csseditor-v1/csseditor/img/apple-touch-icon-precomposed.png"/>
@@ -40,7 +40,7 @@
             <div class="item"><div class="title" id="Main-Position">Позиция</div>
                 <div class="wpt_contents">
                     <div id="posonoff" class="segmented segtwo"><div class="off segment selected">Выкл.</div><div class="on segment">Вкл.</div></div>
-                    <div id="postype1" class="segmented segthree"><div class="relative segment selected">относительная</div><div class="absolute segment">абсолютная</div><div class="fixed segment">фиксированная</div></div>
+                    <div id="postype1" class="segmented full"><div class="relative segment full selected">относительная</div><div class="absolute segment full">абсолютная</div><div class="fixed segment full">фиксированная</div></div>
                     <div id="postype2" class="segmented segthree"><div class="px segment selected">px</div><div class="em segment">em</div><div class="percent segment">%</div></div>
                     <table>
                         <tbody>
@@ -194,7 +194,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Антипрозрачнось:</td>
+                            <td>Антипрозрачность:</td>
                             <td>
                                 <input name="bgalpha" id="bgalpha" class="fd_slider" type="range" max="1" min="0" step="0.1" title="bgalpha" value="1" maxlength="6" />
                             </td>
@@ -418,7 +418,7 @@
             <div class="item"><div class="title" id="BS-Position">Позиция</div>
                 <div class="wpt_contents">
                     <div id="bsonoff" class="segmented segtwo"><div class="off segment">Выкл.</div><div class="on segment selected">Вкл.</div></div>
-                    <div id="bstype" class="segmented segtwo"><div class="inset segment selected">inset</div><div class="outside segment">outside</div></div>
+                    <div id="bstype" class="segmented segtwo"><div class="inset segment selected">внутри</div><div class="outside segment">снаружи</div></div>
                     <table>
                         <tbody>
                         <tr>
@@ -624,7 +624,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Вращение тени:</td>
+                            <td>Вращение цвета:</td>
                             <td>
                                 <input name="fhue" id="fhue" class="fd_slider" type="range" max="359" min="0" title="fhue" value="0" maxlength="6" />
                             </td>

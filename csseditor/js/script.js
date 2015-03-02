@@ -78,7 +78,6 @@ wpt_init = function () {
     document.body.addEventListener("keyup", wpt_keyrelease, false);
     window.setTimeout(insert_sm, 225);
     loadCSSexample('text');
-    ptr_init();
     initialized = true;
 };
 
@@ -826,7 +825,7 @@ wpt_slider_changed = function (value, menu) {
 
     ischanging += 1;
     if ((initialized === true) && (ischanging < 3)) {
-        if ((menu.parentNode.parentNode.parentNode.childNodes[0].innerHTML === 'Background:') || (menu.parentNode.parentNode.parentNode.childNodes[1].innerHTML === 'Background:')) {
+        if ((menu.parentNode.parentNode.parentNode.childNodes[0].innerHTML === 'Фон:') || (menu.parentNode.parentNode.parentNode.childNodes[1].innerHTML === 'Фон:')) {
             $id('box').style.background = getColor('bgslider', 'bgslider', 'bgslider');
             ischanging -= 1;
             return false;
@@ -873,7 +872,7 @@ wpt_slider_changed = function (value, menu) {
                 }
                 break;
             case "Background-Color":
-                if (($id('wpt_sbgd').value.indexOf('common') !== -1) && (modesubmenu !== 'Opacity:')) {
+                if (($id('wpt_sbgd').value.indexOf('common') !== -1) && (modesubmenu !== 'Антипрозрачность:')) {
                     if (modevalue !== $id('bgred').value) {
                         $id('bgred').value = modevalue;
                         fdSlider.updateSlider($id('bgred').id);
@@ -889,7 +888,7 @@ wpt_slider_changed = function (value, menu) {
                 }
                 break;
             case "Text-Color":
-                if (($id('wpt_stcd').value.indexOf('common') !== -1) && (modesubmenu !== 'Opacity:')) {
+                if (($id('wpt_stcd').value.indexOf('common') !== -1) && (modesubmenu !== 'Антипрозрачность:')) {
                     if (modevalue !== $id('tcred').value) {
                         $id('tcred').value = modevalue;
                         fdSlider.updateSlider($id('tcred').id);
@@ -961,7 +960,7 @@ wpt_slider_changed = function (value, menu) {
                 }
                 break;
             case "BS-Color":
-                if (($id('wpt_sbscold').value.indexOf('common') !== -1) && (modesubmenu !== 'Opacity:')) {
+                if (($id('wpt_sbscold').value.indexOf('common') !== -1) && (modesubmenu !== 'Антипрозрачность:')) {
                     if (modevalue !== $id('bsred').value) {
                         $id('bsred').value = modevalue;
                         fdSlider.updateSlider($id('bsred').id);
@@ -977,7 +976,7 @@ wpt_slider_changed = function (value, menu) {
                 }
                 break;
             case "TS-Color":
-                if (($id('wpt_stscold').value.indexOf('common') !== -1) && (modesubmenu !== 'Opacity:')) {
+                if (($id('wpt_stscold').value.indexOf('common') !== -1) && (modesubmenu !== 'Антипрозрачность:')) {
                     if (modevalue !== $id('tsred').value) {
                         $id('tsred').value = modevalue;
                         fdSlider.updateSlider($id('tsred').id);

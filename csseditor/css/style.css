@@ -226,7 +226,6 @@
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    -o-user-select: none;
     user-select: none
 }
 
@@ -974,6 +973,12 @@ body {
     padding: 1px
 }
 
+.segthree > .segment {
+    width: 54px;
+    text-align: center;
+    padding: 1px
+}
+
 .segfour > .segment {
     width: 40px;
     text-align: center;
@@ -1008,7 +1013,7 @@ body {
     padding: 25px;
     overflow: auto;
     display: inline-block;
-    -moz-user-select: auto;
+    -moz-user-select: text;
     -webkit-user-select: auto
 }
 
@@ -1022,7 +1027,7 @@ body {
     height: auto;
     text-shadow: none;
     margin: 0;
-    -moz-user-select: auto;
+    -moz-user-select: text;
     -webkit-user-select: auto
 }
 
@@ -1047,7 +1052,7 @@ body {
 
 #examples_btn {
     position: absolute;
-    right: 195px
+    right: 235px
 }
 
 #dialog {
