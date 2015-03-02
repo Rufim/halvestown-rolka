@@ -529,6 +529,7 @@ generate_css = function () {
         }
     }
     //text
+
     //size
     if ($id('wpt_sfsizeonoff').value === 'on') {
         css += '  font-size: ' + $id('fsize').value + $id('wpt_sfontsizetype').value + '; \n';
